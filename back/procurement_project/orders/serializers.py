@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import Product, Order, OrderItem, Cart, CartItem, User
+from django.contrib.auth import get_user_model
+from .models import Product, Order, OrderItem, Cart, CartItem
+
+User = get_user_model()
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,5 +53,6 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        # Создание пользователя с безопасным хешированием пароля
         user = User.objects.create_user(**validated_data)
         return user

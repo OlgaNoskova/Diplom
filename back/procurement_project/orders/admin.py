@@ -17,7 +17,6 @@ class OrderAdmin(admin.ModelAdmin):
                 order.status = 'confirmed'
                 order.save()
                 updated += 1
-                # Отправка уведомления клиенту
                 send_mail(
                     subject='Статус заказа обновлен',
                     message=f'Ваш заказ #{order.id} теперь имеет статус: {order.get_status_display()}.',
@@ -34,7 +33,6 @@ class OrderAdmin(admin.ModelAdmin):
                 order.status = 'shipped'
                 order.save()
                 updated += 1
-                # Отправка уведомления клиенту
                 send_mail(
                     subject='Статус заказа обновлен',
                     message=f'Ваш заказ #{order.id} теперь имеет статус: {order.get_status_display()}.',
@@ -51,7 +49,6 @@ class OrderAdmin(admin.ModelAdmin):
                 order.status = 'delivered'
                 order.save()
                 updated += 1
-                # Отправка уведомления клиенту
                 send_mail(
                     subject='Статус заказа обновлен',
                     message=f'Ваш заказ #{order.id} теперь имеет статус: {order.get_status_display()}.',

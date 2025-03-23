@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from versatileimagefield.fields import VersatileImageField
 
 class User(AbstractUser):
     ROLE_CHOICES = (
@@ -20,7 +21,8 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    custom_fields = models.JSONField(blank=True, null=True)  # для настраиваемых характеристик
+    custom_fields = models.JSONField(blank=True, null=True)
+    image = VersatileImageField(upload_to='product_images/', blank=True, null=True)
 
     def __str__(self):
         return self.name
